@@ -56,17 +56,17 @@ Uso estratégico de variáveis booleanas de estado (ex: `isDestinoExistente`, `i
 ### 🗺️ Menu Principal e Cadastro de Componentes
 | Menu de Opções do Sistema | Cadastro de Novo Planeta (`Marte`) |
 | :---: | :---: |
-| <img src="image.png" width="100%" alt="Menu Principal" /> | <img src="image-1.png" width="100%" alt="Adicionar Componente" /> |
+| <img src="imagens/imagem-menu.png" width="100%" alt="Menu Principal" /> | <img src="imagens/imagem-criar-planeta.png" width="100%" alt="Adicionar Componente" /> |
 
 ### 🚀 Ciclo de Missão e Segurança de Acesso
 | Execução de Missão e Queima de Combustível | Bloqueio por Código de Acesso Inválido |
 | :---: | :---: |
-| <img src="image-2.png" width="100%" alt="Missão Criada e Motores" /> | <img src="image-3.png" width="100%" alt="Código Inválido" /> |
+| <img src="imagens/imagem-missao-criada.png" width="100%" alt="Missão Criada e Motores" /> | <img src="imagens/imagem-codigo-invalido.png" width="100%" alt="Código Inválido" /> |
 
 ### 📊 Detalhes de Missão e Telemetria dos Sensores
 | Informações da Missão Homologada | Leitura dos Sensores Ambientais |
 | :---: | :---: |
-| <img src="image-4.png" width="100%" alt="Exibir Informações da Missão" /> | <img src="image-5.png" width="100%" alt="Exibir Informações dos Sensores" /> |
+| <img src="imagens/imagem-codigo-correto.png" width="100%" alt="Exibir Informações da Missão" /> | <img src="imagens/imagem-info-sensores.png" width="100%" alt="Exibir Informações dos Sensores" /> |
 
 ---
 
