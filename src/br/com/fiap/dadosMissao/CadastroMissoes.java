@@ -55,6 +55,7 @@ public class CadastroMissoes {
                         }
                         if (planetaDestino.getTipoPlaneta().equalsIgnoreCase("gasoso")){
                             System.out.println("Impossível realizar a missão pois o planeta é gasoso.");
+                            continue;
                         }
                     }
 
@@ -67,7 +68,7 @@ public class CadastroMissoes {
                 return null;
             }
             if(!isDestinoExploravel){
-                System.out.println("Retorandno para o menu");
+                System.out.println("Retornando para o menu");
                 return null;
             }
         }while(nomeDestino.isEmpty() || !isDestinoExploravel);

@@ -29,7 +29,7 @@ public class SensorTemperatura implements Sensor {
             planeta.registrarTemperatura(temperatura);
             return;
         }
-        System.out.printf("Sensor de %s não ativo no momento", retornarTipo());
+        System.out.printf("Sensor de %s não ativo no momento\n", retornarTipo());
     }
 
     @Override
