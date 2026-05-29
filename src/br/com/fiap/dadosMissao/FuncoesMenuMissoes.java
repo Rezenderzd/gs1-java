@@ -1,6 +1,8 @@
 package br.com.fiap.dadosMissao;
 
 import br.com.fiap.componentes.ComponenteEspacial;
+import br.com.fiap.propulsao.PropulsaoEletrica;
+import br.com.fiap.propulsao.PropulsaoQuimica;
 import br.com.fiap.propulsao.SistemaPropulsao;
 
 import java.util.List;
@@ -53,6 +55,11 @@ public class FuncoesMenuMissoes {
         int numeroDeTripulantes = cadastros.cadastrarNumeroTripulantes();
         SistemaPropulsao propulsaoUsada = cadastros.cadastrandoPropulsaoDoFoguete();
         DadosMissao novaMissao = new DadosMissao(nomeMissao, componenteEspacialDestino, numeroDeDiasExpedicao, numeroDeTripulantes, propulsaoUsada);
+        if(propulsaoUsada instanceof PropulsaoEletrica){
+            novaMissao.definirCombustivelRestante(((PropulsaoEletrica) propulsaoUsada).getPotenciaAtualPorcentagem());
+        }else{
+            novaMissao.definirCombustivelRestante(((PropulsaoQuimica) propulsaoUsada).getNivelCombustivelEmPorcentagem());
+        }
         listaMissoes.add(novaMissao);
     }
 }

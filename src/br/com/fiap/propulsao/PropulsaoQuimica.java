@@ -1,11 +1,12 @@
 package br.com.fiap.propulsao;
 
-import java.util.Random;
+import java.util.Scanner;
 
 public class PropulsaoQuimica extends SistemaPropulsao {
     private double nivelCombustivelEmPorcentagem;
-    Random random = new Random();
     private double nivelCombustivelGasto;
+    private double potenciaAtual;
+    Scanner leitor = new Scanner(System.in);
 
     public PropulsaoQuimica(int empuxoTotal) {
         super(empuxoTotal);
@@ -29,16 +30,32 @@ public class PropulsaoQuimica extends SistemaPropulsao {
     }
 
     @Override
-    public void ligarMotores() {
-        System.out.println("Motores acionados.");
+    public double ligarMotores() {
+        System.out.println("Motores ligados!");
         System.out.printf("Combustivel atual: %.2f%%\n", this.getNivelCombustivelEmPorcentagem());
-        calcularEmpuxo();
+        this.potenciaAtual = acelerar();
+        calcularEmpuxo(this.potenciaAtual);
+        return this.potenciaAtual;
+    }
+
+    @Override
+    public double acelerar(){
+        double potencia;
+        System.out.println("Digite a potencia desejada");
+        do{
+            potencia = leitor.nextDouble();
+            if(potencia>=100 || potencia<=0){
+                System.out.println("Digite uma potência válida (entre 1 e 100)\n");
+            }
+        }while (potencia>100 || potencia<=0);
+        System.out.printf("Acelerando com potencia atual de %.2f%%\n", potencia);
+        return potencia;
     }
 
     @Override
     public void desligarMotores() {
         System.out.println("Motores desligados");
-        setNivelCombustivelGasto(random.nextDouble(0, getNivelCombustivelEmPorcentagem()-15));
+        setNivelCombustivelGasto(this.potenciaAtual);
         System.out.printf("Total gasto: %.2f\n", this.getNivelCombustivelGasto());
         setNivelCombustivelEmPorcentagem(this.getNivelCombustivelEmPorcentagem()- this.getNivelCombustivelGasto());
         System.out.printf("Total restante de combustível: %.2f\n", this.getNivelCombustivelEmPorcentagem());
@@ -56,8 +73,8 @@ public class PropulsaoQuimica extends SistemaPropulsao {
     }
 
     @Override
-    public void calcularEmpuxo() {
-        double empuxoGerado = getEmpuxoMaximo() * (this.getNivelCombustivelEmPorcentagem() / 100.0);
+    public void calcularEmpuxo(double potencia) {
+        double empuxoGerado = getEmpuxoMaximo() * (potencia / 100.0);
         System.out.printf("O empuxo foi de %.2f\n", empuxoGerado);
     }
 

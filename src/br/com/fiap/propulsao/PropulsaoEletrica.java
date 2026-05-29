@@ -1,12 +1,14 @@
 package br.com.fiap.propulsao;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class PropulsaoEletrica extends SistemaPropulsao{
     private double potenciaConsumidaEmPorcentagem;
     private double potenciaTotalEmPorcentagem;
     private double potenciaAtualPorcentagem = 100;
-    Random random = new Random();
+    private double potenciaAtual;
+    Scanner leitor = new Scanner(System.in);
 
     public PropulsaoEletrica(int empuxoTotal) {
         super(empuxoTotal);
@@ -34,16 +36,32 @@ public class PropulsaoEletrica extends SistemaPropulsao{
     }
 
     @Override
-    public void ligarMotores() {
+    public double ligarMotores() {
         System.out.println("Motores ligados!");
-        System.out.printf("Potencia atual com %.2f%%\n", getPotenciaTotalEmPorcentagem());
-        calcularEmpuxo();
+        System.out.printf("Potencia total atual: %.2f%%\n", getPotenciaAtualPorcentagem());
+        this.potenciaAtual = acelerar();
+        calcularEmpuxo(this.potenciaAtual);
+        return this.potenciaAtual;
+    }
+
+    @Override
+    public double acelerar(){
+        double potencia;
+        System.out.println("Digite a potencia desejada");
+        do{
+            potencia = leitor.nextDouble();
+            if(potencia>=100 || potencia<=0){
+                System.out.println("Digite uma potência válida (entre 1 e 100)\n");
+            }
+        }while (potencia>100 || potencia<=0);
+        System.out.printf("Acelerando com potencia atual de %.2f%%\n", potencia);
+        return potencia;
     }
 
     @Override
     public void desligarMotores() {
         System.out.println("Motores desligados!");
-        setPotenciaConsumidaEmPorcentagem(random.nextDouble(10, getPotenciaAtualPorcentagem()-15));
+        setPotenciaConsumidaEmPorcentagem(this.potenciaAtual);
         System.out.printf("Total gasto: %.2f\n", this.getPotenciaConsumidaEmPorcentagem());
         setPotenciaAtualPorcentagem(this.getPotenciaTotalEmPorcentagem()- this.getPotenciaConsumidaEmPorcentagem());
         System.out.printf("Total restante de energia: %.2f\n", getPotenciaAtualPorcentagem());
@@ -61,8 +79,8 @@ public class PropulsaoEletrica extends SistemaPropulsao{
     }
 
     @Override
-    public void calcularEmpuxo() {
-        double empuxoGerado = getEmpuxoMaximo() * (this.getPotenciaAtualPorcentagem() / 100.0);
+    public void calcularEmpuxo(double potencia) {
+        double empuxoGerado = getEmpuxoMaximo() * (potencia / 100.0);
         System.out.printf("O empuxo foi de %.2f\n", empuxoGerado);
     }
 

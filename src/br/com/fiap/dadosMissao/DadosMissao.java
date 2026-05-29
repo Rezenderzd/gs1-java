@@ -14,6 +14,7 @@ public class DadosMissao {
     private List<ComponenteEspacial> listaAtualComponentes;
     private int numeroDeTripulantes;
     private SistemaPropulsao propulsaoUsada;
+    private double combustivelRestante;
 
     public DadosMissao(String nome, String componenteEspacialDestino, int tempoEmDias, int numeroDeTripulantes, SistemaPropulsao propulsaoUsada) {
         this.nome = nome;
@@ -52,14 +53,23 @@ public class DadosMissao {
         return propulsaoUsada;
     }
 
+    public double getCombustivelRestante() {
+        return combustivelRestante;
+    }
+
+    public void definirCombustivelRestante(double combustivelRestante){
+        this.combustivelRestante = combustivelRestante;
+    }
+
     public void exibirDadosMissao(){
         System.out.printf("""
                 Nome: %s
                 Componente Espacial de destino: %s
                 Tempo em dias: %d
                 Quantidade de tripulantes: %d
+                Combustivel restante: %.2f%%
                 Propulsão usada: %s
-                """, this.getNome(), this.getComponenteEspacialDestino(),  this.getTempoEmDias(),this.getNumeroDeTripulantes(), this.getPropulsaoUsada().nomePropulsao());
+                """, this.getNome(), this.getComponenteEspacialDestino(),  this.getTempoEmDias(),this.getNumeroDeTripulantes(),this.getCombustivelRestante(), this.getPropulsaoUsada().nomePropulsao());
     }
 
 

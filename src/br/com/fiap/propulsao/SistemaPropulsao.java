@@ -11,8 +11,9 @@ abstract public class SistemaPropulsao {
         this.empuxoMaximo = empuxoMaximo;
     }
 
-    public abstract void ligarMotores();
+    public abstract double ligarMotores();
+    public abstract double acelerar();
     public abstract void desligarMotores();
-    public abstract void calcularEmpuxo();
+    public abstract void calcularEmpuxo(double potencia);
     public abstract String nomePropulsao();
 }
